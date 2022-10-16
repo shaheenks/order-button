@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Order Creator</title>
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <!-- <link rel="icon" href="./favicon.ico" type="image/x-icon"> -->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
+    <!-- <nav>
+      <div class="nav-wrapper">
+        <div class="container">
+          <a href="#" class="brand-logo">Angel v1.0</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#" onclick="testClick('reset clicked')">Reset</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav> -->
+
+    <div class="container" hidden id="tradebutton"><blockquote id="orderDetails"></blockquote><p id="default-button"> </p><button id="custom-button">Click here to execute</button> </div>
+
+    <div class="container" id="createOrder" hidden>
+        <h5>New Order</h5>
+          <div class="row">
+            <form action="orderSubmit()" id="orderForm" class="col s12">
+              <div class="row">
+                <div class="input-field col s3">
+                  <input placeholder="NSE" id="market" type="text" class="validate" required>
+                  <label for="first_name">Market</label>
+                </div>
+                <div class="input-field col s3">
+                  <input placeholder="RELIANCE-EQ" id="scrip" type="text" class="validate" required>
+                  <label for="scrip">Scrip Code</label>
+                </div>
+                <div class="input-field col s3">
+                  <input placeholder="BUY" id="transtype" type="text" class="validate" required>
+                  <label for="transtype">Transaction</label>
+                </div>
+                <div class="input-field col s3">
+                  <input placeholder="0" min="0" id="price" type="number" class="validate" required>
+                  <label for="price">Price</label>
+                </div>
+                
+              </div>
+              <div class="row">
+                <div class="input-field col s3">
+                  <input placeholder="1" id="quantity" min="1" type="number" class="validate" required>
+                  <label for="quantity">Quantity</label>
+                </div>
+                <div class="input-field col s3">
+                  <input placeholder="1" id="discquantity" min="1" type="number" class="validate" required>
+                  <label for="discquantity">Disc. Quantity</label>
+                </div>
+                <div class="input-field col s3">
+                  <input placeholder="DELIVERY" id="producttype" type="text" class="validate" required>
+                  <label for="producttype">Product Type</label>
+                </div>
+                <div class="input-field col s3">
+                  <input placeholder="LIMIT" id="ordertype" type="text" class="validate" required>
+                  <label for="ordertype">Order Type</label>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="row">
+            <div class="col s3">
+              <button class="btn waves-effect waves-light" onclick="orderSubmit()">Create
+                <i class="material-icons right">send</i>
+              </button>
+            </div>
+          </div>
+      </div>
+      <div class="container">
+        <div id="verifycopy" hidden>
+          <p>URL</p>
+          <!-- <div class="row">
+            <div class="col s3"> </div>
+          </div> -->
+          <div class="row">
+            <div class="col s12"><a href="" id="displayURL" class="tooltippedd" data-position="top" data-tooltip="Click to copy URL"></p></div>
+          </div>
+        </div>
+      </div>
+
+	<script src="index.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://smartapi.angelbroking.com/common/v1.js"></script>
+    <script>
+        function clickTradeButton() {
+          document.getElementById('custom-button').click()
+        }
+
+        function renderTradeButton(orderData) {
+
+          document.getElementById('default-button').innerHTML = '';
+          document.getElementById('tradebutton').hidden = false;
+          document.getElementById('orderDetails').innerHTML = JSON.stringify(orderData);
+
+          SmartApiConnect.ready(function () { 
+
+            var smartApi = new SmartApiConnect("your_api_key"); 
+
+            smartApi.add(orderData); 
+            // smartApi.renderButton("#default-button"); 
+            smartApi.link("#custom-button")
+
+            smartApi.finished(function (status,acess_token) {
+                console.log('smartApi.finished  Status',status);
+                console.log('smartApi.finished  Tokens',acess_token);
+            });
+
+          }); 
+        }
+
+        var urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('exchange') == null) {
+          document.getElementById('createOrder').hidden = false
+        } else {
+          var orderData = {
+            "exchange": urlParams.get('exchange'),
+            "tradingsymbol": urlParams.get('tradingsymbol'),
+            "transactiontype": urlParams.get('transactiontype'),
+            "price": urlParams.get('price'),
+            "quantity": urlParams.get('quantity'),
+            "disclosedquantity": urlParams.get('disclosedquantity'),
+            "producttype": urlParams.get('producttype'),
+            "ordertype": urlParams.get('ordertype')
+          }
+          renderTradeButton(orderData);
+          // setTimeout(function() {
+          //   document.getElementById("custom-button").click()
+          // }, 2000)
+          
+        };
+
+        function orderSubmit() {
+          let formData = document.getElementById("orderForm").elements;
+          let orderData = {
+            "exchange": formData.item(0).value,
+            "tradingsymbol": formData.item(1).value,
+            "transactiontype": formData.item(2).value,
+            "price": formData.item(3).value,
+            "quantity": formData.item(4).value,
+            "disclosedquantity": formData.item(5).value,
+            "producttype": formData.item(6).value,
+            "ordertype": formData.item(7).value
+          }
+          console.log(orderData);
+
+          document.getElementById('verifycopy').hidden = false;
+
+          let querystring = new URLSearchParams(orderData).toString();
+          document.getElementById("displayURL").innerHTML = window.location.href+'?'+querystring;
+          document.getElementById("displayURL").href = window.location.href+'?'+querystring;
+
+          // navigator.clipboard.writeText(window.location.href+querystring);
+
+        }
+
+        function testClick(message) {
+          alert(message)
+        }
+
+    </script>
+    <script>
+      M.AutoInit();
+    </script>
+  </body>
+</html>
