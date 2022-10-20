@@ -23,70 +23,158 @@
       </div>
     </nav> -->
 
-    <div class="container" hidden id="tradebutton"><blockquote id="orderDetails"></blockquote><p id="default-button"> </p><button id="custom-button">Click here to execute</button> </div>
+  <div class="container" hidden id="tradebutton">
+    <!-- <blockquote id="orderDetails"></blockquote> -->
+    <blockquote><h5>Order Details</h5></blockquote>
+    <div class="row">
+      <div class="col s5">
+        <table class="striped">
+          <thead>
+            <th>Parameter</th>
+            <th>Value</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Exchange</td>
+              <td id="exchange"></td>
+            </tr>
+            <tr>
+              <td>Variety</td>
+              <td id="variety"></td>
+            </tr>
+            <tr>
+              <td>Transaction Type</td>
+              <td id="transactiontype"></td>
+            </tr>
+            <tr>
+              <td>Product Type</td>
+              <td id="producttype"></td>
+            </tr>
+            <tr>
+              <td>Order Type</td>
+              <td id="ordertype"></td>
+            </tr>
+            <tr>
+              <td>Duration</td>
+              <td id="validity"></td>
+            </tr>
+            <tr>
+              <td>Scrip Code</td>
+              <td id="tradingsymbol"></td>
+            </tr>
+            <tr>
+              <td>Price</td>
+              <td id="price"></td>
+            </tr>
+            <tr>
+              <td>Lots</td>
+              <td id="quantity"></td>
+            </tr>
+            <tr>
+              <td>Target</td>
+              <td id="squareoff"></td>
+            </tr>
+            <tr>
+              <td>Stoploss</td>
+              <td id="stoploss"></td>
+            </tr>
+            <tr>
+              <td>Trailing SL</td>
+              <td id="trailingstoploss"></td>
+            </tr>
+            <tr>
+              <td>Trigger</td>
+              <td id="triggerprice"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <p id="default-button"> </p>
+    <button id="custom-button" class="waves-effect waves-light btn red">Click here to Proceed</button>
 
-    <div class="container" id="createOrder" hidden>
-        <h5>New Order</h5>
-          <div class="row">
-            <form action="orderSubmit()" id="orderForm" class="col s12">
-              <div class="row">
+  </div>
+
+  <div class="container" id="createOrder" hidden>
+      <h5>New Order</h5>
+          <form action="orderSubmit()" id="orderForm" class="col s12">
+            <div class="row">
+              <div class="input-field col s3">
+                <input value="ROBO" id="variety" type="text" class="validate" required>
+                <label for="variety">Variety</label>
+              </div>
+              <div class="input-field col s2">
+                <input value="BUY" id="transactiontype" type="text" class="validate" required>
+                <label for="transactiontype">Transaction Type</label>
+              </div>
+              <div class="input-field col s2">
+                <input value="BO" id="producttype" type="text" class="validate" required>
+                <label for="producttype">Product Type</label>
+              </div>
+              <div class="input-field col s3">
+                <input value="STOPLOSS_LIMIT" id="ordertype" type="text" class="validate" required>
+                <label for="ordertype">Order Type</label>
+              </div>
+              <div class="input-field col s2">
+                <input value="DAY" id="duration" type="text" class="validate" required>
+                <label for="duration">Duration</label>
+              </div>
+            </div>
+            <div class="row">
                 <div class="input-field col s3">
-                  <input placeholder="NSE" id="market" type="text" class="validate" required>
-                  <label for="first_name">Market</label>
+                  <input id="exchange" type="text" value="NFO" class="validate" required>
+                  <label for="exchange">Exchange</label>
                 </div>
                 <div class="input-field col s3">
-                  <input placeholder="RELIANCE-EQ" id="scrip" type="text" class="validate" required>
+                  <input placeholder="NIFTY20OCT2217500CE" id="scrip" type="text" class="validate" required>
                   <label for="scrip">Scrip Code</label>
                 </div>
-                <div class="input-field col s3">
-                  <input placeholder="BUY" id="transtype" type="text" class="validate" required>
-                  <label for="transtype">Transaction</label>
-                </div>
-                <div class="input-field col s3">
-                  <input placeholder="0" min="0" id="price" type="number" class="validate" required>
-                  <label for="price">Price</label>
-                </div>
-                
-              </div>
-              <div class="row">
-                <div class="input-field col s3">
-                  <input placeholder="1" id="quantity" min="1" type="number" class="validate" required>
-                  <label for="quantity">Quantity</label>
-                </div>
-                <div class="input-field col s3">
-                  <input placeholder="1" id="discquantity" min="1" type="number" class="validate" required>
-                  <label for="discquantity">Disc. Quantity</label>
-                </div>
-                <div class="input-field col s3">
-                  <input placeholder="DELIVERY" id="producttype" type="text" class="validate" required>
-                  <label for="producttype">Product Type</label>
-                </div>
-                <div class="input-field col s3">
-                  <input placeholder="LIMIT" id="ordertype" type="text" class="validate" required>
-                  <label for="ordertype">Order Type</label>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="row">
-            <div class="col s3">
-              <button class="btn waves-effect waves-light" onclick="orderSubmit()">Create
-                <i class="material-icons right">send</i>
-              </button>
             </div>
-          </div>
-      </div>
-      <div class="container">
-        <div id="verifycopy" hidden>
-          <p>URL</p>
-          <!-- <div class="row">
-            <div class="col s3"> </div>
-          </div> -->
-          <div class="row">
-            <div class="col s12"><a href="" id="displayURL" class="tooltippedd" data-position="top" data-tooltip="Click to copy URL"></p></div>
-          </div>
+            <div class="row">
+              <div class="input-field col s2">
+                <input placeholder="50" min="0" id="price" type="number" class="validate" required>
+                <label for="price">Price</label>
+              </div>
+              <div class="input-field col s2">
+                <input placeholder="1" id="quantity" min="1" type="number" class="validate" required>
+                <label for="quantity">Lots</label>
+              </div>
+              <div class="input-field col s2">
+                <input placeholder="5" id="target" min="0" type="number" class="validate" required>
+                <label for="target">Target</label>
+              </div>
+              <div class="input-field col s2">
+                <input placeholder="6" id="stoploss" min="0" type="number" class="validate" required>
+                <label for="stoploss">Stop Loss</label>
+              </div>
+              <div class="input-field col s2">
+                <input placeholder="0" id="trailingstoploss" min="0" type="number" class="validate" required>
+                <label for="trailingstoploss">Trailing SL</label>
+              </div>
+              <div class="input-field col s2">
+                <input placeholder="0" id="trigger" min="0" type="number" class="validate" required>
+                <label for="trigger">Trigger</label>
+              </div>
+            </div>
+          </form>
+          <div class="col s3">
+            <button class="btn waves-effect waves-light" onclick="orderSubmit()">Create
+              <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </div>
+    <div class="container">
+      <div id="verifycopy" hidden>
+        <p>URL</p>
+        <!-- <div class="row">
+          <div class="col s3"> </div>
+        </div> -->
+        <div class="row">
+          <div class="col s12"><blockquote><a href="" id="displayURL"></a></blockquote></div>
         </div>
       </div>
+    </div>
 
 	<script src="index.js"></script>
     <!-- Compiled and minified JavaScript -->
@@ -101,11 +189,11 @@
 
           document.getElementById('default-button').innerHTML = '';
           document.getElementById('tradebutton').hidden = false;
-          document.getElementById('orderDetails').innerHTML = JSON.stringify(orderData);
+          // document.getElementById('orderDetails').innerHTML = JSON.stringify(orderData);
 
           SmartApiConnect.ready(function () { 
 
-            var smartApi = new SmartApiConnect("your_api_key"); 
+            var smartApi = new SmartApiConnect("smartapi_key"); 
 
             smartApi.add(orderData); 
             // smartApi.renderButton("#default-button"); 
@@ -124,15 +212,35 @@
           document.getElementById('createOrder').hidden = false
         } else {
           var orderData = {
-            "exchange": urlParams.get('exchange'),
+            "variety": urlParams.get('variety'),
             "tradingsymbol": urlParams.get('tradingsymbol'),
+            "exchange": urlParams.get('exchange'),
             "transactiontype": urlParams.get('transactiontype'),
-            "price": urlParams.get('price'),
+            "ordertype": urlParams.get('ordertype'),
             "quantity": urlParams.get('quantity'),
-            "disclosedquantity": urlParams.get('disclosedquantity'),
             "producttype": urlParams.get('producttype'),
-            "ordertype": urlParams.get('ordertype')
+            "price": urlParams.get('price'),
+            "triggerprice": urlParams.get('triggerprice'),
+            "stoploss": urlParams.get('stoploss'),
+            "squareoff": urlParams.get('squareoff'),
+            "trailingstoploss": urlParams.get('trailingstoploss'),
+            "validity": urlParams.get('validity')
           }
+
+          document.getElementById("exchange").innerHTML = orderData.exchange;
+          document.getElementById("variety").innerHTML = orderData.variety;
+          document.getElementById("transactiontype").innerHTML = orderData.transactiontype;
+          document.getElementById("producttype").innerHTML = orderData.producttype;
+          document.getElementById("ordertype").innerHTML = orderData.ordertype;
+          document.getElementById("validity").innerHTML = orderData.validity;
+          document.getElementById("tradingsymbol").innerHTML = orderData.tradingsymbol;
+          document.getElementById("price").innerHTML = orderData.price;
+          document.getElementById("quantity").innerHTML = orderData.quantity;
+          document.getElementById("squareoff").innerHTML = orderData.squareoff;
+          document.getElementById("stoploss").innerHTML = orderData.stoploss;
+          document.getElementById("trailingstoploss").innerHTML = orderData.trailingstoploss;
+          document.getElementById("triggerprice").innerHTML = orderData.triggerprice;
+
           renderTradeButton(orderData);
           // setTimeout(function() {
           //   document.getElementById("custom-button").click()
@@ -143,14 +251,19 @@
         function orderSubmit() {
           let formData = document.getElementById("orderForm").elements;
           let orderData = {
-            "exchange": formData.item(0).value,
-            "tradingsymbol": formData.item(1).value,
-            "transactiontype": formData.item(2).value,
-            "price": formData.item(3).value,
-            "quantity": formData.item(4).value,
-            "disclosedquantity": formData.item(5).value,
-            "producttype": formData.item(6).value,
-            "ordertype": formData.item(7).value
+            "variety": formData.item(0).value,
+            "tradingsymbol": formData.item(6).value,
+            "exchange": formData.item(5).value,
+            "transactiontype": formData.item(1).value,
+            "ordertype": formData.item(3).value,
+            "quantity": formData.item(8).value,
+            "producttype": formData.item(2).value,
+            "price": formData.item(7).value,
+            "triggerprice": formData.item(12).value,
+            "stoploss": formData.item(10).value,
+            "squareoff": formData.item(9).value,
+            "trailingstoploss": formData.item(11).value,
+            "validity": formData.item(4).value
           }
           console.log(orderData);
 
@@ -172,5 +285,10 @@
     <script>
       M.AutoInit();
     </script>
+    <style>
+      td {
+        padding: 5px;
+      }
+    </style>
   </body>
 </html>
