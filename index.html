@@ -127,34 +127,34 @@
                   <label for="exchange">Exchange</label>
                 </div>
                 <div class="input-field col s3">
-                  <input placeholder="NIFTY20OCT2217500CE" id="scrip" type="text" class="validate" required>
+                  <input placeholder="NIFTY03NOV2217800CE" id="scrip" type="text" class="validate" required>
                   <label for="scrip">Scrip Code</label>
                 </div>
             </div>
             <div class="row">
               <div class="input-field col s2">
-                <input placeholder="50" min="0" id="price" type="number" class="validate" required>
-                <label for="price">Price</label>
-              </div>
-              <div class="input-field col s2">
-                <input placeholder="1" id="quantity" min="1" type="number" class="validate" required>
+                <input value="1" id="quantity" min="1" type="number" class="validate" required>
                 <label for="quantity">Lots</label>
               </div>
               <div class="input-field col s2">
-                <input placeholder="5" id="target" min="0" type="number" class="validate" required>
-                <label for="target">Target</label>
-              </div>
-              <div class="input-field col s2">
-                <input placeholder="6" id="stoploss" min="0" type="number" class="validate" required>
-                <label for="stoploss">Stop Loss</label>
-              </div>
-              <div class="input-field col s2">
-                <input placeholder="0" id="trailingstoploss" min="0" type="number" class="validate" required>
-                <label for="trailingstoploss">Trailing SL</label>
+                <input placeholder="0" min="0" id="price" type="number" class="validate" required>
+                <label for="price">Price</label>
               </div>
               <div class="input-field col s2">
                 <input placeholder="0" id="trigger" min="0" type="number" class="validate" required>
                 <label for="trigger">Trigger</label>
+              </div>
+              <div class="input-field col s2">
+                <input placeholder="0" id="target" min="0" type="number" class="validate" required>
+                <label for="target">Target</label>
+              </div>
+              <div class="input-field col s2">
+                <input placeholder="0" id="stoploss" min="0" type="number" class="validate" required>
+                <label for="stoploss">Stop Loss</label>
+              </div>
+              <div class="input-field col s2">
+                <input value="0" id="trailingstoploss" min="0" type="number" class="validate" required>
+                <label for="trailingstoploss">Trailing SL</label>
               </div>
             </div>
           </form>
@@ -256,13 +256,13 @@
             "exchange": formData.item(5).value,
             "transactiontype": formData.item(1).value,
             "ordertype": formData.item(3).value,
-            "quantity": formData.item(8).value,
+            "quantity": formData.item(7).value,
             "producttype": formData.item(2).value,
-            "price": formData.item(7).value,
-            "triggerprice": formData.item(12).value,
-            "stoploss": formData.item(10).value,
-            "squareoff": formData.item(9).value,
-            "trailingstoploss": formData.item(11).value,
+            "price": formData.item(8).value,
+            "triggerprice": formData.item(9).value,
+            "stoploss": formData.item(11).value,
+            "squareoff": formData.item(10).value,
+            "trailingstoploss": formData.item(12).value,
             "validity": formData.item(4).value
           }
           console.log(orderData);
