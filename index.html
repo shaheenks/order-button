@@ -101,7 +101,7 @@
           <form action="orderSubmit()" id="orderForm" class="col s12">
             <div class="row">
               <div class="input-field col s3">
-                <input value="ROBO" id="variety" type="text" class="validate" required>
+                <input value="NORMAL" id="variety" type="text" class="validate" required>
                 <label for="variety">Variety</label>
               </div>
               <div class="input-field col s2">
@@ -109,11 +109,11 @@
                 <label for="transactiontype">Transaction Type</label>
               </div>
               <div class="input-field col s2">
-                <input value="BO" id="producttype" type="text" class="validate" required>
+                <input value="DELIVERY" id="producttype" type="text" class="validate" required>
                 <label for="producttype">Product Type</label>
               </div>
               <div class="input-field col s3">
-                <input value="STOPLOSS_LIMIT" id="ordertype" type="text" class="validate" required>
+                <input value="LIMIT" id="ordertype" type="text" class="validate" required>
                 <label for="ordertype">Order Type</label>
               </div>
               <div class="input-field col s2">
@@ -123,7 +123,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s3">
-                  <input id="exchange" type="text" value="NFO" class="validate" required>
+                  <input id="exchange" type="text" value="NSE" class="validate" required>
                   <label for="exchange">Exchange</label>
                 </div>
                 <div class="input-field col s3">
@@ -134,7 +134,7 @@
             <div class="row">
               <div class="input-field col s2">
                 <input value="1" id="quantity" min="1" type="number" class="validate" required>
-                <label for="quantity">Lots</label>
+                <label for="quantity">Quantity</label>
               </div>
               <div class="input-field col s2">
                 <input placeholder="0" min="0" id="price" type="number" class="validate" required>
